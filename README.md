@@ -1,1 +1,1 @@
-## Pima dibaetes classification
+## Pima diabetes classification
