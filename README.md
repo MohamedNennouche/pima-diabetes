@@ -16,7 +16,7 @@ Et on a en sortie si la personne est malade ou pas. Le dataset est disponible su
 
 ## Disposition du dépôt
 * pima-notebook.ipynb : Contient la totalité du projet réalisé
-* diabetes.csv : Dataset disponible sur Kaggle
+* pima-diabetes.csv : Dataset disponible sur Kaggle
 ## Pré-requis logiciels 
 Python 3.8 et +
 Ainsi que les packages suivant : 
@@ -55,5 +55,34 @@ Etant donné que les algorithmes basés sur des algorithmes d'arbres de décisio
 |   KNN   |   75.76   |   74.98   |
 |   SVM   |   74.89   |   74.08   |
 ### Avec restructuration des données
+On a dans le dataset de départ une distribution comme suit : 
+- 0 : 500
+- 1 : 268
+#### Down-sampling de la classe majoritaire
+Avec ce down-sampling on a alors diminué du nombre d'échantillons de la classe majoritaire qu'on a pour restructurer le dataset comme suit : 
+- 0 : 370
+- 1 : 268
 
-## Remarques
+On retrouve les résultats suivant :
+
+|   Algorithme choisi    |   Précision en test (%)|  F1 score (%) |
+|---      |:-:        |:-:        |
+|   KNN   |   69.27   |   68.83   |
+|   SVM   |   64.58   |   64.24   |
+|   Random Forrest   |   73.44   |   73.51   |
+
+Comme on le pensait, le down-sampling aurait un effet néfaste vu le nombre déjà assez petit d'échantillons dans le dataset de base. 
+#### Up-sampling de la classe minoritaire
+Avec ce up-sampling on a alors augmenté en dupliquant aléatoirement des échantillons faisant partie de la classe minoritaire pour restructurer le dataset comme suit : 
+- 0 : 500
+- 1 : 400
+
+On retrouve les résultats suivant :
+
+|   Algorithme choisi    |   Précision en test (%)|  F1 score (%) |
+|---      |:-:        |:-:        |
+|   KNN   |   76.3   |   76.39   |
+|   SVM   |   74.44   |   74.31   |
+|   Random Forrest   |   83.7   |   83.74   |
+
+On a alors avec cet up-sampling grandement amélioré les résultats du Random Forrest.
