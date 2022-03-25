@@ -31,7 +31,7 @@ Ainsi que les packages suivant :
 2. Analyse globale des données du dataset
 3. Ensemble de visualisation des données et analyse de la corrélation entre les différentes variables
 4. Application d'un ensemble d'algorithme de classification en analysant les performances en test sur les variables de bases: 
-    - Random Forrest
+    - Random Forest
     - Extremely randomized tree
     - Adaboost
     - KNN
@@ -43,17 +43,19 @@ Ainsi que les packages suivant :
 ### Avec les caractéristiques de base
 |   Algorithme choisi    |   Précision en test (%)|  F1 score (%) |
 |---      |:-:        |:-:        |
-|  Random Forrest   |   76.62   |   76.42   |
-|   Extremely randomized tree   |   76.62   |   76.17   |
-|   Adaboost   |   73.59   |   72.8   |
-|   KNN   |   75.32   |   74.69   |
-|   SVM   |   75.76   |   74.62   |
+|  Random Forest   |   76.62   |   74.18   |
+|   Extremely randomized tree   |   76.62   |   73.7   |
+|   Adaboost   |   73.59   |   69.79   |
+|   LGBM   |   74.89   |   72.43   |
+|   Naive Bayes   |   75.76   |   73.53   |
+|   KNN   |   75.32   |   71.96   |
+|   SVM   |   75.76   |   71.53   |
 ### Avec normalisation des données 
 Etant donné que les algorithmes basés sur des algorithmes d'arbres de décision sont insensibles à la normalisation des données j'ai retesté que les autres algorithmes : 
 |   Algorithme choisi    |   Précision en test (%)|  F1 score (%) |
 |---      |:-:        |:-:        |
-|   KNN   |   75.76   |   74.98   |
-|   SVM   |   74.89   |   74.08   |
+|   KNN   |   75.76   |   72.17   |
+|   SVM   |   74.89   |   71.17   |
 ### Avec restructuration des données
 On a dans le dataset de départ une distribution comme suit : 
 - 0 : 500
@@ -67,9 +69,9 @@ On retrouve les résultats suivant :
 
 |   Algorithme choisi    |   Précision en test (%)|  F1 score (%) |
 |---      |:-:        |:-:        |
-|   KNN   |   69.27   |   68.83   |
-|   SVM   |   64.58   |   64.24   |
-|   Random Forrest   |   73.44   |   73.51   |
+|   KNN   |   69.27   |   67.48   |
+|   SVM   |   64.58   |   62.8    |
+|   Random Forest   |   73.44   |   73.51   |
 
 Comme on le pensait, le down-sampling aurait un effet néfaste vu le nombre déjà assez petit d'échantillons dans le dataset de base. 
 #### Up-sampling de la classe minoritaire
