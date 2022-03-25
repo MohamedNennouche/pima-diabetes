@@ -1,8 +1,8 @@
 ## Pima diabetes classification
-Le but de ce projet est de parvenir à mettre en place une classification binaire : 
-- 0 (négatif)
-- 1 (positif)
-Dans le cas de diabètes chez la communauté Pima, on a alors dans notre projet 8 données d'entrée : 
+The goal of this project is to achieve a binary classification: 
+- 0 (negative)
+- 1 (positive)
+In the case of diabetes in the Pima community, we have in our project 8 input data: 
 - Pregnancies
 - Glucose	
 - Blood Pressure
@@ -12,36 +12,38 @@ Dans le cas de diabètes chez la communauté Pima, on a alors dans notre projet 
 - Diabetes Pedigree 
 - Function
 - Age
-Et on a en sortie si la personne est malade ou pas. Le dataset est disponible sur Kaggle via ce [lien](https://www.kaggle.com/uciml/pima-indians-diabetes-database).
+And we have in output if the person is sick or not. The dataset is available on Kaggle via this [link](https://www.kaggle.com/uciml/pima-indians-diabetes-database).
 
-## Disposition du dépôt
-* pima-notebook.ipynb : Contient la totalité du projet réalisé
-* pima-diabetes.csv : Dataset disponible sur Kaggle
-## Pré-requis logiciels 
-Python 3.8 et +
-Ainsi que les packages suivant : 
+## Repository layout
+* pima-notebook.ipynb : Contains the whole project
+* pima-diabetes.csv : Dataset available on Kaggle
+## Software requirements 
+Python 3.8 and more
+As well as the following packages : 
 - Numpy
 - Pandas
 - Seaborn
 - Scikit-learn
 - Matplotlib
 - Scipy
-## Contenu du projet
-1. Chargement des données
-2. Analyse globale des données du dataset
-3. Ensemble de visualisation des données et analyse de la corrélation entre les différentes variables
-4. Application d'un ensemble d'algorithme de classification en analysant les performances en test sur les variables de bases: 
+## Content of the project
+1. Data loading
+2. Global analysis of the dataset
+3. Data visualization set and analysis of the correlation between the different variables
+4. Application of a set of classification algorithms by analyzing the test performance on the basic variables: 
     - Random Forest
     - Extremely randomized tree
     - Adaboost
+    - LGBM
+    - Naive Bayes
     - KNN
     - SVM 
-5. Normalisation des données d'entrées et on refait les tests avec les algorithmes
-6. 
+5. Normalization of the input data and retesting with the algorithms
+6. We proceed to a resampling of our data to allow a rebalancing of the classes and we test once again the algorithms and we analyze the impact of this resampling (down-sampling and up-sampling)
 
-## Performances atteintes
-### Avec les caractéristiques de base
-|   Algorithme choisi    |   Précision en test (%)|  F1 score (%) |
+## Performance achieved
+### With the basic characteristics
+|   Algorithms    |   Accuracy (%)|  F1 score (%) |
 |---      |:-:        |:-:        |
 |  Random Forest   |   76.62   |   74.18   |
 |   Extremely randomized tree   |   76.62   |   73.7   |
@@ -50,41 +52,44 @@ Ainsi que les packages suivant :
 |   Naive Bayes   |   75.76   |   73.53   |
 |   KNN   |   75.32   |   71.96   |
 |   SVM   |   75.76   |   71.53   |
-### Avec normalisation des données 
-Etant donné que les algorithmes basés sur des algorithmes d'arbres de décision sont insensibles à la normalisation des données j'ai retesté que les autres algorithmes : 
-|   Algorithme choisi    |   Précision en test (%)|  F1 score (%) |
+### With data normalization 
+Since the algorithms based on decision tree algorithms are insensitive to data normalization, I tested the other algorithms : 
+
+|   Algorithms    |   Accuracy (%)|  F1 score (%) |
 |---      |:-:        |:-:        |
 |   KNN   |   75.76   |   72.17   |
 |   SVM   |   74.89   |   71.17   |
-### Avec restructuration des données
-On a dans le dataset de départ une distribution comme suit : 
+### With data restructuring
+We have in the starting dataset a distribution as follows: 
 - 0 : 500
 - 1 : 268
-#### Down-sampling de la classe majoritaire
-Avec ce down-sampling on a alors diminué du nombre d'échantillons de la classe majoritaire qu'on a pour restructurer le dataset comme suit : 
+#### Down-sampling of the majority class
+With this down-sampling we have then decreased the number of samples of the majority class that we have to restructure the dataset as follows: 
 - 0 : 370
 - 1 : 268
 
-On retrouve les résultats suivant :
+We find the following results:
 
-|   Algorithme choisi    |   Précision en test (%)|  F1 score (%) |
+|   Algorithms    |   Accuracy (%)|  F1 score (%) |
 |---      |:-:        |:-:        |
 |   KNN   |   69.27   |   67.48   |
 |   SVM   |   64.58   |   62.8    |
-|   Random Forest   |   73.44   |   73.51   |
+|   Random Forest   |   73.44   |   72.73   |
 
-Comme on le pensait, le down-sampling aurait un effet néfaste vu le nombre déjà assez petit d'échantillons dans le dataset de base. 
-#### Up-sampling de la classe minoritaire
-Avec ce up-sampling on a alors augmenté en dupliquant aléatoirement des échantillons faisant partie de la classe minoritaire pour restructurer le dataset comme suit : 
+As expected, down-sampling would have a detrimental effect given the already small number of samples in the base dataset. 
+#### Up-sampling of the minority class
+With this up-sampling we then increased by randomly duplicating samples belonging to the minority class to restructure the dataset as follows: 
 - 0 : 500
-- 1 : 400
+- 1 : 500
 
-On retrouve les résultats suivant :
+We find the following results:
 
-|   Algorithme choisi    |   Précision en test (%)|  F1 score (%) |
+|   Algorithms    |   Accuracy (%)|  F1 score (%) |
 |---      |:-:        |:-:        |
-|   KNN   |   76.3   |   76.39   |
-|   SVM   |   74.44   |   74.31   |
-|   Random Forrest   |   83.7   |   83.74   |
+|   KNN   |   85.67   |   85.66   |
+|   SVM   |   76      |   75.93   |
+|   Random Forest   |   88    |   88   |
+|   Naive Bayes   |   75.67    |   75.55   |
+|   Extremely randomized tree   |   89.33    |   89.26   |
 
-On a alors avec cet up-sampling grandement amélioré les résultats du Random Forrest.
+We can see the beneficial effect of this up-sampling, we see excellent results with the Random Forest and the Extremely randomized tree
